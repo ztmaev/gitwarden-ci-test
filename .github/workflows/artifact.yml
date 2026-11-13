@@ -1,0 +1,11 @@
+name: Make artifact
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hello from gitwarden" > out.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: out.txt
