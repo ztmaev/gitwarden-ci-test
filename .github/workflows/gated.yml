@@ -1,0 +1,8 @@
+name: Gated deploy
+on: workflow_dispatch
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: approval
+    steps:
+      - run: echo deployed
