@@ -1,0 +1,8 @@
+name: Always skipped
+on: workflow_dispatch
+jobs:
+  never:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo never
