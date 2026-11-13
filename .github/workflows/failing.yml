@@ -1,0 +1,7 @@
+name: Failing check
+on: workflow_dispatch
+jobs:
+  fail:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 20 && exit 1
