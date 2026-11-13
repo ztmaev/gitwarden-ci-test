@@ -1,0 +1,15 @@
+name: Slow build
+on:
+  workflow_dispatch:
+    inputs:
+      seconds:
+        default: "75"
+concurrency:
+  group: slow
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep ${{ inputs.seconds }}
+      - run: echo done
