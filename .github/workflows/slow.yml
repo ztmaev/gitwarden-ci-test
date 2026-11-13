@@ -1,9 +1,29 @@
 name: Slow build
 on:
+  push:
+    branches: [never-matches]
   workflow_dispatch:
     inputs:
       seconds:
-        default: "75"
+        description: How long the build sleeps
+        required: false
+        default: "45"
+      note:
+        description: Free-text note for the run
+        required: true
+        type: string
+      mode:
+        description: Build mode # a comment
+        type: choice
+        default: fast
+        options:
+          - fast
+          - thorough
+          - paranoid
+      verbose:
+        description: Print extra logging
+        type: boolean
+        default: false
 concurrency:
   group: slow
   cancel-in-progress: false
@@ -11,5 +31,5 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "note=${{ inputs.note }} mode=${{ inputs.mode }} verbose=${{ inputs.verbose }}"
       - run: sleep ${{ inputs.seconds }}
-      - run: echo done
